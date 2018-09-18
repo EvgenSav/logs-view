@@ -2,13 +2,13 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import $ from 'jquery';
-import { connect, Provider } from 'react-redux'
-import { createStore } from 'redux'
-import { BrowserRouter, Route } from 'react-router-dom'
+import { connect, Provider } from 'react-redux';
+import { createStore } from 'redux';
+import { BrowserRouter, Route } from 'react-router-dom';
 
 const initialState = {
-  first: "qwer",
-  second: "zxc",
+  first: 'qwer',
+  second: 'zxc',
   items: [],
   testItems: []
 };
@@ -16,16 +16,16 @@ const initialState = {
 const rootReducer = function (state = initialState, action) {
   switch (action.type) {
     case ACTION_CHANGE_FIRST_NAME:
-      return { ...state, first: action.payload }
+      return { ...state, first: action.payload };
     case ACTION_CHANGE_SECOND_NAME:
-      return { ...state, second: action.payload }
+      return { ...state, second: action.payload };
     case ACTION_ADD_TEST_ITEM:
       const newItems = state.testItems.slice();
       newItems.push(action.payload);
-      return { ...state, testItems: newItems }
+      return { ...state, testItems: newItems };
     case ACTION_UPDATE_LOG_ITEMS:
       const _items = action.payload.slice();
-      return { ...state, items: _items }
+      return { ...state, items: _items };
     default:
       return state;
   }
@@ -50,34 +50,34 @@ const mapStateToProps = (state) => {
 
 //ACTIONS
 const ChangeFirst = (newFirst) => {
-  console.log("change first name executed");
+  console.log('change first name executed');
   return {
     type: ACTION_CHANGE_FIRST_NAME,
     payload: newFirst
-  }
+  };
 };
 const ChangeSecond = (newSecond) => {
-  console.log("change second name executed");
+  console.log('change second name executed');
   return {
     type: ACTION_CHANGE_SECOND_NAME,
     payload: newSecond
-  }
+  };
 };
 
 const AddTestItem = (newTestItem) => {
-  console.log("add test item executed");
+  console.log('add test item executed');
   return {
     type: ACTION_ADD_TEST_ITEM,
     payload: newTestItem
-  }
+  };
 };
 
 const UpdateItems = (logItems) => {
-  console.log("update log items executed");
+  console.log('update log items executed');
   return {
     type: ACTION_UPDATE_LOG_ITEMS,
     payload: logItems
-  }
+  };
 };
 
 class TableHead extends Component {
@@ -95,11 +95,11 @@ class TableHead extends Component {
         </tr>
       </thead>
     );
-  };
+  }
 }
 class LogItem extends Component {
   render() {
-    const argval = this.props.data.ArgType !== "LoanId" ? this.props.data.ArgValue : this.props.data.GuidArgValue;
+    const argval = this.props.data.ArgType !== 'LoanId' ? this.props.data.ArgValue : this.props.data.GuidArgValue;
     return (
       <tr>
         <td>{this.props.data.ActionName}</td>
@@ -111,7 +111,7 @@ class LogItem extends Component {
         <td>{argval}</td>
       </tr>
     );
-  };
+  }
 }
 class Logs extends Component {
   constructor(props) {
@@ -119,7 +119,7 @@ class Logs extends Component {
     this.state = {
       LogItems: [],
       isLoaded: false
-    }
+    };
   }
 
   componentDidMount() {
@@ -137,13 +137,13 @@ class Logs extends Component {
             isLoaded: true
           }
         ); */
-        console.log("get from server received!!!");
+        console.log('get from server received!!!');
       }.bind(this),
       error: function (xhr, status, err) {
         console.error(this.props.url, status, err.toString());
       }.bind(this)
     });
-    console.log("get to server sent!!!");
+    console.log('get to server sent!!!');
   }
 
 
@@ -154,7 +154,7 @@ class Logs extends Component {
       const time = logItem.TimeStampUtc;
       //convert to local datetime
       logItem.TimeStampUtc = new Date(time).toLocaleString();
-      return <LogItem key={item.Id} data={logItem} />
+      return <LogItem key={item.Id} data={logItem} />;
     });
     return (
       <div>
@@ -162,7 +162,7 @@ class Logs extends Component {
           <input type='button' className='form-control'
             value='Add log'
             onClick={() => {
-              store.dispatch(AddTestItem("lol"));
+              store.dispatch(AddTestItem('lol'));
             }}
           ></input>
         </div>
@@ -203,7 +203,7 @@ class SomeComp extends Component {
         <WrappedLogsComponent />
       </Provider>
     );
-  };
+  }
 }
 class App extends Component {
   render() {
