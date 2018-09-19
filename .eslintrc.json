@@ -15,10 +15,6 @@
         "react"
     ],
     "rules": {
-        "linebreak-style": [
-            "warn",
-            "unix"
-        ],
         "quotes": [
             "warn",
             "single"
@@ -29,6 +25,7 @@
         ],
         "no-unused-vars":"off",
         "no-console":"off",
-        "no-case-declarations":"off"
+        "no-case-declarations":"off",
+        "no-extra-bind":"off"
     }
 }
