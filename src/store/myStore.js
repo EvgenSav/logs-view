@@ -26,6 +26,7 @@ const rootReducer = function (state = initialState, action) {
 };
 
 export const store = createStore(rootReducer);
+console.log(store);
 
 //ACTION TYPES
 const ACTION_CHANGE_FIRST_NAME = 'ACTION_CHANGE_FIRST_NAME';

@@ -2,13 +2,13 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import { connect, Provider } from 'react-redux';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Switch, withRouter } from 'react-router-dom';
 import Logs from '../src/components/Logs';
 import InputsComponent from './components/Inputs';
 import { store, mapStateToProps } from '../src/store/myStore';
 
-const WrappedLogsComponent = connect(mapStateToProps)(Logs);
-const WrappedInputsComponent = connect(mapStateToProps)(InputsComponent);
+const WrappedLogsComponent = withRouter(connect(mapStateToProps)(Logs));
+const WrappedInputsComponent = withRouter(connect(mapStateToProps)(InputsComponent));
 
 class SomeComp extends Component {
   render() {
@@ -26,6 +26,7 @@ function InputsWithStore() {
     </Provider>
   );
 }
+
 class App extends Component {
   render() {
     return (
@@ -38,12 +39,14 @@ class App extends Component {
           Logs view app
         </h3>
         {/* Router */}
+        <Provider store={store}>
         <BrowserRouter>
           <Switch>
-            <Route path='/inputs' component={InputsWithStore} />
-            <Route component={SomeComp} />
+            <Route path='/inputs' component={WrappedInputsComponent} />
+            <Route component={WrappedLogsComponent} />
           </Switch>
         </BrowserRouter>
+        </Provider>
       </div>
     );
   }

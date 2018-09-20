@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import $ from 'jquery';
 import LogItem from './LogItem';
-import { store } from '../store/myStore';
 import { ReloadItems } from '../store/myStore';
 
 class Logs extends Component {
@@ -21,7 +20,7 @@ class Logs extends Component {
             dataType: 'json',
             cache: false,
             success: function (data) {
-                store.dispatch(ReloadItems(data));
+                this.props.dispatch(ReloadItems(data));
                 /* this.setState(
                   {
                     LogItems: data,
@@ -38,6 +37,7 @@ class Logs extends Component {
     }
     render() {
         const logs = this.props.items;
+        console.log(this.props);
         const LogView = logs.map((arrayItem) => {
             const logItem = arrayItem;
             const time = logItem.TimeStampUtc;

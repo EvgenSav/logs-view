@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {store, AddTestItem, ChangeFirst, ChangeSecond} from '../store/myStore';
+import { AddTestItem, ChangeFirst, ChangeSecond} from '../store/myStore';
 
 class InputsComponent extends Component {
     render() {
@@ -9,7 +9,7 @@ class InputsComponent extends Component {
             <input type='button' className='form-control'
               value='Add log'
               onClick={() => {
-                store.dispatch(AddTestItem('lol'));
+                this.props.dispatch(AddTestItem('lol'));
               }}
             ></input>
           </div>
@@ -18,7 +18,7 @@ class InputsComponent extends Component {
               value={this.props.first}
               placeholder='first'
               onChange={(event) => {
-                store.dispatch(ChangeFirst(event.target.value));
+                this.props.dispatch(ChangeFirst(event.target.value));
               }}
             ></input>
           </div>
@@ -27,7 +27,7 @@ class InputsComponent extends Component {
               value={this.props.second}
               placeholder='second'
               onChange={(event) => {
-                store.dispatch(ChangeSecond(event.target.value));
+                this.props.dispatch(ChangeSecond(event.target.value));
               }}
             ></input>
           </div>
